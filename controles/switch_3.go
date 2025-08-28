@@ -2,23 +2,28 @@ package main
 
 import "fmt"
 
-func notaParaConceito2(n float64) string {
-	switch {
-	case n >= 9 && n <= 10:
-		return "A"
-	case n >= 8 && n < 9:
-		return "B"
-	case n >= 5 && n < 8:
-		return "C"
-	case n >= 3 && n < 5:
-		return "D"
-	case n >= 10 || n < 0:
-		return "Nota inválida"
+func tipo(i interface{}) string {
+	switch i.(type) {
+	case int:
+		return "é um inteiro"
+	case float64:
+		return "é um float"
+	case string:
+		return "é uma string"
+	case bool:
+		return "é um booleano"
+	case func():
+		return "é uma função"
 	default:
-		return "E"
+		return "não sei que tipo é esse"
 	}
 }
 
 func main() {
-	fmt.Println(notaParaConceito2(10))
+	fmt.Println(tipo(3.14))
+	fmt.Println(tipo("Olá"))
+	fmt.Println(tipo(42))
+	fmt.Println(tipo(true))
+	fmt.Println(tipo(func() {}))
+	fmt.Println(tipo([]int{1, 2, 3}))
 }
